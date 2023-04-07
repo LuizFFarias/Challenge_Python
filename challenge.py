@@ -37,6 +37,7 @@ while opcao != 5:
 #cadastro
     
     if opcao == 1:
+       # while cadastro == 0:
         nome = input("\nDigite seu nome: ")
         dianascimento = int(input("Digite o dia de seu nascimento: "))
         mesnascimento = int(input("Digite o mes de seu nascimento: "))
@@ -52,14 +53,14 @@ while opcao != 5:
                     cnh = int(input("\nDigite sua CNH: "))
             else:
                     print("\nDigite um número válido!")
-                    cadastro == 1
+                    cadastro +=  1
         else:
                 print("Digite uma data válida!")
-                cadastro == 1 
+                cadastro += 1 
         cpf = int(input("Digite seu CPF: "))
         if cpf > 99999999999 and cpf < 1:
                 print("Digite um número válido!")
-                cadastro == 1
+                cadastro += 1
         else:
             endereco = input("Digite a rua: ")
             numresidencia = int(input("Digite o número da residência: "))
@@ -92,7 +93,8 @@ while opcao != 5:
                     print("\nCadstro realizado.")
                 else:
                     print("Faça novamente o cadastro.")
-                        
+                    cadastro += 1
+                            
 #registro da bike
 
     if opcao == 2:
@@ -110,7 +112,9 @@ while opcao != 5:
         else:
             print("Faça novamente o cadastro.")
             
-
+#feedback
+    #if opcao == 3: 
+         
 
 
           
