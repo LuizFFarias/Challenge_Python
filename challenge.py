@@ -1,8 +1,12 @@
+
+import datetime
+#cadastro
+dtatual = datetime.datetime.now()
 cont = 0
-cadastro = 0
 opcao = 0
 diahoje = 0
 meshoje = 0
+data = 0
 nome = 0
 dianascimento = 0
 mesnascimento = 0
@@ -14,98 +18,110 @@ cpf = 0
 telefone = 0
 endereco = 0
 numresidencia = 0
-complemento = 0
+complemento = ""
+#bike
 numserie = 0
 modelo = 0
-valor = 0
+valorbike = 0
 cor = 0
 ntfiscal = 0
+acessorios = 0
+#feedback
 fbtempo = 0
 fbservicos = 0
 fbproblemas = 0
 fbatendimentos = 0
 fbduvidas = 0
+#relatório
+cadastro = 0
+registro_bike = 0
+
 
 print("Olá, em que a Technobike pode te ajudar hoje?")
 while opcao != 5:
     print("\n1 - Cadastro")
     print("2 - Registrar bike")
     print("3 - Feedback")
-    print("4 - Contrato")
-    print("5 - Relatório")
+    print("4 - Relatório")
+    print("5 - Contrato")
     print("6 - Encerrar")
     opcao = int(input("\nSelecione uma das opções acima: "))
 
     if opcao == 6:
           print("\nEncerrando, até a próxima!")
+          break
 
 #cadastro
     #while cadastro != 1:    
     if opcao == 1: 
-        diahoje = int(input("Digite o dia de hoje: "))
-        meshoje = int(input("Digite o mês atual: "))
         nome = input("\nDigite seu nome: ")
-        dianascimento = int(input("Digite o dia de seu nascimento: "))
-        if dianascimento > 0 and dianascimento < 32:
-            mesnascimento = int(input("Digite o mes de seu nascimento: "))
-        elif  mesnascimento > 0 and mesnascimento < 13:
-            anonascimento = int(input("Digite o ano de seu nascimento: "))
-        elif anonascimento < 2006 and anonascimento > 1903:
-            print(" ")
-        if meshoje == mesnascimento and anonascimento == 2005 and diahoje > dianascimento:
-                print("\n1 - RG")
-                print("2 - CNH")
-                cdopcao2 = int(input("\nSelecione uma opção: "))
-            
+        email = input("Digite seu e-mail: ")
+        data = input("Digite uma data no formato DD/MM/AAAA: ")
+        dianascimento, mesnascimento, anonascimento = data.split('/')
+        dianascimento = int(dianascimento)
+        mesnascimento = int(mesnascimento)
+        anonascimento = int(anonascimento)
+        idade = dtatual.year - anonascimento - ((dianascimento, mesnascimento) > (dtatual.day, dtatual.month))
 
-                if cdopcao2 == 1:
-                        rg = input("\nDigite seu RG: ")
-                elif cdopcao2 == 2: 
-                        cnh = int(input("\nDigite sua CNH: "))
-                else:
-                        print("\nDigite um número válido!")
-                        break
+        if idade >= 18:  
+            print("Dia:", dianascimento)
+            print("Mês:", mesnascimento)
+            print("Ano:", anonascimento)
+            print("\n1 - RG")
+            print("2 - CNH")
+            cdopcao2 = int(input("\nSelecione uma opção: "))
         else:
-            print("Digite uma data válida!")
-            cadastro += 1 
+            print("\nVocê não é maior de idade, não podemos continuar!")
             break
-        cpf = int(input("Digite seu CPF: "))
-        if cpf > 99999999999 and cpf < 1:
-                print("Digite um número válido!")
-                cadastro += 1
+    
+
+        if cdopcao2 == 1:
+                rg = input("\nDigite seu RG: ")
+        elif cdopcao2 == 2: 
+                cnh = int(input("\nDigite sua CNH: "))
         else:
-            endereco = input("Digite a rua: ")
-            numresidencia = int(input("Digite o número da residência: "))
-            print("\nÉ necessário complemento? \n1 - Sim \n2 - Não")
-            cdopcao3 = int(input("\nSelecione uma opção: "))
-            if cdopcao3 == 1:
-                complemento = input("Informe o complemento: ")
-                print(f"As informações estão corretas? \nNome: {nome}")
-                print(f"Data de nascimento{dianascimento}/{mesnascimento}/{anonascimento}")
-                if cnh ==0:
-                    print(f"RG: {rg}")
-                elif rg == 0:
-                    print(f"CNH: {cnh}")
-                print(f"CPF: {cpf}")
-                print(f"Endereço: {endereco} {numresidencia}  {complemento}")
-                cdopcao4 = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
-                if cdopcao4 == 1:
-                    print("Cadstro realizado.")
-            else: 
-                print(f"\nAs informações estão corretas? \nNome: {nome}")
-                print(f"Data de nascimento: {dianascimento}/{mesnascimento}/{anonascimento}")
-                if cnh ==0:
-                    print(f"RG: {rg}")
-                elif rg == 0:
-                    print(f"CNH: {cnh}")
-                print(f"CPF: {cpf}")
-                print(f"Endereço: {endereco} {numresidencia}  {complemento}")
-                cdopcao4 = int(input("1 - Sim \n2 - Não \nSelecione uma opção: "))
-                if cdopcao4 == 1:
-                    print("\nCadstro realizado.")
-                else:
-                    print("Faça novamente o cadastro.")
-                    cadastro += 1
+                print("\nDigite um número válido!")
+                break
+        
+            
+        cpf = input("Digite seu CPF: ")
+                
+        endereco = input("Digite a rua: ")
+        numresidencia = int(input("Digite o número da residência: "))
+        print("\nÉ necessário complemento? \n1 - Sim \n2 - Não")
+        cdopcao3 = int(input("\nSelecione uma opção: "))
+        if cdopcao3 == 1:
+            complemento = input("Informe o complemento: ")
+            print(f" \nNome: {nome}")
+            print(f"E-maila: {email}")
+            print(f"Data de nascimento: {dianascimento}/{mesnascimento}/{anonascimento}")
+            if cnh ==0:
+                print(f"RG: {rg}")
+            elif rg == 0:
+                print(f"CNH: {cnh}")
+            print(f"CPF: {cpf}")
+            print(f"Endereço: {endereco} {numresidencia}  {complemento}")
+            cdopcao4 = int(input("\nAs informações estão corretas? \n1 - Sim \n2 - Não \nSelecione uma opção: "))
+            if cdopcao4 == 1:
+                print("Cadstro realizado.")
+                cadastro = 1
+        else: 
+            print(f"Nome: {nome}")
+            print(f"E-mail: {email}")
+            print(f"Data de nascimento: {dianascimento}/{mesnascimento}/{anonascimento}")
+            if cnh ==0:
+                print(f"RG: {rg}")
+            elif rg == 0:
+                print(f"CNH: {cnh}")
+            print(f"CPF: {cpf}")
+            print(f"Endereço: {endereco} {numresidencia}  {complemento}")
+            cdopcao4 = int(input("\nAs informações estão corretas? \n1 - Sim \n2 - Não \nSelecione uma opção: "))
+            if cdopcao4 == 1:
+                print("\nCadstro realizado.")
+                cadastro = 1
+            elif cdopcao4 == 2:
+                print("Faça novamente o cadastro.")
+                    
                             
 #registro da bike
 
@@ -114,14 +130,26 @@ while opcao != 5:
         numserie = int(input("Digite o número de série: "))
         ntfiscal = int(input("Informe a nota fiscal: "))
         cor = input("Informe a cor: ")
-        print(f"\nAs informações estão corretas? \nModelo: {modelo}")
+        valorbike = float(input("Informe o valor da bike: R$"))
+        if valorbike < 30000:
+            print("O valor mínimo para bike é de R$:30000.00")
+            break
+        print("\nSua bike possui acessórios? \n1 - Sim \n2 - Não")
+        bikeopcao = int(input("\nSelecione uma opção: "))
+        if bikeopcao == 1:
+            acessorios = float(input("Informe o valor total dos acessórios: R$"))
+        print(f"\nModelo: {modelo}")
         print(f"Número de série: {numserie}")
         print(f"Nota fiscal: {ntfiscal}")
         print(f"Cor: {cor}")
-        print("\n1 - Sim \n2 - Não")
+        print(f"Valor da bike: R${valorbike}")
+        if acessorios != 0:
+            print(f"Valor dos acessórios: R${acessorios}")
+        print("\nAs informações estão corretas? \n1 - Sim \n2 - Não")
         rgopcao = int(input("\nSelecione uma opção: "))
         if rgopcao == 1:
-            print("\nCadstro realizado.")
+            print("\nRegistro realizado.")
+            registro_bike = 1
         else:
             print("Faça novamente o registro.")
             
@@ -163,7 +191,7 @@ while opcao != 5:
                 print("Feedbck cancelado!")
             else:
                 print("Digite uma opção válida!")
-        elif fbservicos == 4:
+        elif fbopcao == 4:
             fbatendimentos = input("\nEscreva seu feedback: ")
             print("\nTem certeza que vai enviar o feedback? \n1 - Sim \n2 - Não")
             fbopcao2 = int(input("\nSelecione uma opção: "))
@@ -186,4 +214,72 @@ while opcao != 5:
         else:
              print("\nDigite uma opção válida!")
 
+#Relatório
+    if opcao == 4:
+        print("\nRelatório dos dados adcionados: ")
+        if cadastro == 1:
+            print(f"\nRelatório do cadastro:  \nNome: {nome}")
+            print(f"Data de nascimento: {dianascimento}/{mesnascimento}/{anonascimento}")
+            if cnh ==0:
+                print(f"RG: {rg}")
+            elif rg == 0:
+                print(f"CNH: {cnh}")
+            print(f"CPF: {cpf}")
+            print(f"Endereço: {endereco} {numresidencia}  {complemento}")
+        elif cadastro == 0:
+            print("Nenhum cadastro foi adicionado.")
+        if registro_bike == 1:
+            print(f"\nRelatório do registro da bike:  \nModelo: {modelo}")
+            print(f"Número de série: {numserie}")
+            print(f"Nota fiscal: {ntfiscal}")
+            print(f"Cor: {cor}")
+            if acessorios != 0:
+                print(f"Valor dos acessórios: {acessorios}")
+
+#contrato 
+    if opcao == 5:
+        print("Revisando seus dados: ")
+        if cadastro != 1:
+            print("Primeiro realize o cadastro.")
+        elif registro_bike != 1: 
+            print("Primeiro realize o registro da bike.")
+        print("\nTodos os dados estão corretos!")
+        print("\n1 - Cartão de crédito \n2 - Cartão de débito \n3 - Boleto \n4 - Pix")
+        cntopcao = int(input("Selecione um método de pagamento: "))
+        if cntopcao == 1: 
+            nmr_cartao_credito = input("Digite o número do cartão: ")
+            titular = input("Nome do titular: ")
+            cdg_seguranca = input("Código de segurança: ") 
+            dtvalidade = input("Digite uma data no formato MM/AAAA: ")
+            mes_validade, ano_validade = dtvalidade.split('/') 
+            mes_validade = int(mes_validade)
+            ano_validade = int(ano_validade)
+            validade = dtatual.year - ano_validade - (dtatual.month < mes_validade)
+            if validade <= 0: 
+                print("O cartão não é válido")
+                break
+            print("Cartão registrado!")
+        if cntopcao == 2:
+            nmr_cartao_debito = input("Digite o número do cartão: ")
+            titular = input("Nome do titular: ")
+            cdg_seguranca = input("Código de segurança: ") 
+            if cdg_seguranca >= 1 and cdg_seguranca <= 999:
+                dtvalidade = input("Digite a data de validade no formato MM/AAAA: ")
+                mes_validade, ano_validade = dtvalidade.split('/') 
+                mes_validade = int(mes_validade)
+                ano_validade = int(ano_validade)
+                validade = dtatual.year - ano_validade - (dtatual.month < mes_validade)
+                if validade <= 0: 
+                    print("O cartão não é válido")
+                    break
+                print("Cartão registrado!")
+            else:
+                print("Código inválido!")
+                break
+        elif cntopcao == 3: 
+            print("Um boleto foi enviado para o seu e-mail.")
+        elif cntopcao == 4:
+            print("A chave para realizar o pix foi enviado para o seu e-mail.")
+        else: 
+            print("Digite uma opção válida!")
 
