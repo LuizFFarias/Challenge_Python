@@ -83,7 +83,7 @@ while opcao != 5:
             if cdopcao3 == 1:
                 complemento = input("Informe o complemento: ")
                 print(f" \nNome: {nome}")
-                print(f"E-maila: {email}")
+                print(f"E-mail: {email}")
                 print(f"Data de nascimento: {dianascimento}/{mesnascimento}/{anonascimento}")
                 if cnh ==0:
                     print(f"RG: {rg}")
@@ -133,30 +133,25 @@ while opcao != 5:
         ntfiscal = int(input("Informe a nota fiscal: "))
         cor = input("Informe a cor: ")
         valorbike = float(input("Informe o valor da bike: R$"))
-        if valorbike > 30000:
            
-            print("\nSua bike possui acessórios? \n1 - Sim \n2 - Não")
-            bikeopcao = int(input("\nSelecione uma opção: "))
-            if bikeopcao == 1:
-                acessorios = float(input("Informe o valor total dos acessórios: R$"))
-            print(f"\nModelo: {modelo}")
-            print(f"Número de série: {numserie}")
-            print(f"Nota fiscal: {ntfiscal}")
-            print(f"Cor: {cor}")
-            print(f"Valor da bike: R${valorbike}")
-            if acessorios != 0:
-                print(f"Valor dos acessórios: R${acessorios}")
-            print("\nAs informações estão corretas? \n1 - Sim \n2 - Não")
-            rgopcao = int(input("\nSelecione uma opção: "))
-            if rgopcao == 1:
-                print("\nRegistro realizado.")
-                registro_bike = 1
-            else:
-                print("Faça novamente o registro.")
-
+        print("\nSua bike possui acessórios? \n1 - Sim \n2 - Não")
+        bikeopcao = int(input("\nSelecione uma opção: "))
+        if bikeopcao == 1:
+            acessorios = float(input("Informe o valor total dos acessórios: R$"))
+        print(f"\nModelo: {modelo}")
+        print(f"Número de série: {numserie}")
+        print(f"Nota fiscal: {ntfiscal}")
+        print(f"Cor: {cor}")
+        print(f"Valor da bike: R${valorbike}")
+        if acessorios != 0:
+            print(f"Valor dos acessórios: R${acessorios}")
+        print("\nAs informações estão corretas? \n1 - Sim \n2 - Não")
+        rgopcao = int(input("\nSelecione uma opção: "))
+        if rgopcao == 1:
+            print("\nRegistro realizado.")
+            registro_bike = 1
         else:
-             print("O valor mínimo para bike é de R$:30000.00")
-            
+            print("Faça novamente o registro.")
 #feedback
     if opcao == 3: 
         print("\nQual o motivo do feedback? \n1 - Tempo de espera")
