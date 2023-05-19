@@ -30,6 +30,7 @@ cidade = ""
 estado = ""
 pais = ""
 cadastro = 0
+confCli = 0
 
 #Bike
 numserie = 0
@@ -38,12 +39,13 @@ valorbike = 0
 cor = 0
 ntfiscal = 0
 acessorios = 0
+registro = 0
 
 #Vistoria
 aprovado = 0
 reprovado = 0
 emAnalise = 0
-faltandoDocs = 0
+faltandoDocs = True
 
 #Feedback
 fbescolha = 0
@@ -205,92 +207,97 @@ def RegistroBike():
 
 #Para enviar as fotos e vídeos para a vistoria
 def MidiaVistoria():
-    print("\nClique no x para adicionar a foto: ")
-    print("\n x- Foto da bike inteira de lado")
-    confirmFoto = Confirmacao()
+        print("\nClique no x para adicionar a foto: ")
+        
+        print("\n x- Foto da bike inteira de lado")
+            
+        confirmFoto = Confirmacao()
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto da bike inteira de lado")
+            confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+            
+                    
+            
+        print("\n x- Foto do número de série")
+        confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto da roda")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto do número de série")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto dos freios")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto da roda")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto do guidão")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto dos freios")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto dos pedais")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto do guidão")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto da corrente")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto dos pedais")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto sua com a bike")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto da corrente")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto da bike de frente")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto sua com a bike")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\n x- Foto dos acessórios (se for visível)")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto da bike de frente")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada.")
+        else: 
+            print("Repita o processo")
+        print("\nClique no x para adicionar os vídeos: ")
+        print("\nx -Vídeo mostrando a bike completa")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\n x- Foto dos acessórios (se for visível)")
-    confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nVídeo adicionado.")
+        else: 
+            print("Repita o processo")
+        print("\nx -Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto")
+        confirmFoto = Confirmacao()
 
-    if confirmFoto == 1:
-        print("\nFoto adicionada.")
-    else: 
-        print("Repita o processo")
-    print("\nClique no x para adicionar os vídeos: ")
-    print("\nx -Vídeo mostrando a bike completa")
-    confirmFoto = Confirmacao()
-
-    if confirmFoto == 1:
-        print("\nVídeo adicionado.")
-    else: 
-        print("Repita o processo")
-    print("\nx -Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto")
-    confirmFoto = Confirmacao()
-
-    if confirmFoto == 1:
-        print("\nVídeo adicionado.")
-    else: 
-        print("Repita o processo")
+        if confirmFoto == 1:
+            print("\nVídeo adicionado.")
+        else: 
+            print("Repita o processo")
 
 #Para informar um feedback
 def Feedback():
@@ -444,6 +451,8 @@ while opcao != 6:
                     print(f"CNH: {cnh}")
                 print(f"CPF: {cpf}")
                 print(f"Endereço: {endereco} {numresidencia}  {complemento}")
+            else:
+                print(f'\nNenhum dado foi adicionado.')
 
 
             if registro == 1:
@@ -541,3 +550,6 @@ while opcao != 6:
                 except ValueError:
                     print("Formato de escolha incorreta!")
                     nmrinvalido = 1
+
+        case 0:
+            MidiaVistoria()
