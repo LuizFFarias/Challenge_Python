@@ -135,14 +135,14 @@ def RegistroCliente():
                 rg = input("\nDigite seu RG: ")
         elif cdopcao2 == 2: 
                 cnh = int(input("\nDigite sua CNH: "))
-                cpf = input("Digite seu CPF: ")
-                pais = input("Qual o seu país?: ")
-                estado = input("Qual seu estado?: ")
-                cidade = input("Qual a sua cidade?: ")
-                cep = int(input("Qual o seu cep?: "))
-                bairro = input("Qual o seu bairro?: ")
-                endereco = input("Digite a rua: ")
-                numresidencia = int(input("Digite o número da residência: "))
+        cpf = input("Digite seu CPF: ")
+        pais = input("Informe o seu país: ")
+        estado = input("Informe seu estado: ")
+        cidade = input("Informe sua cidade: ")
+        cep = int(input("Informe seu cep: "))
+        bairro = input("Informe seu bairro: ")
+        endereco = input("Informe sua rua: ")
+        numresidencia = int(input("Informe o número da residência: "))
         
         print("\nÉ necessário complemento? \n1 - Sim \n2 - Não")
         cdopcao3 = int(input("\nSelecione uma opção: "))
@@ -324,7 +324,7 @@ def TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7):
         case 0:
             print("\nNenhum seguro foi adicionado.")
 
-#Para mostrar o feedback no relatório
+#Para fazer um feedback
 def FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas):
     match fbopcao:
         case 1:
@@ -347,7 +347,7 @@ def Apolice():
     elif emAnalise == True:
         print("Sua vistoria ainda está em análise.")
     elif faltandoDocs == True:
-        print("Há arquivos reprovados. Confira quais são e reencie eles.")
+        print("Há arquivos reprovados. Confira quais são e reenvie eles.")
 
 #Para emitir a apólice
 def EmitirApolice():
@@ -366,7 +366,7 @@ def Nota():
 #Menu de opções
 while opcao != 6:
     print("\nOlá, em que a Technobike pode te ajudar hoje?")
-    print("\n1 - Conheça os tipos de seguro para a bike")
+    print("1 - Conheça os tipos de seguro para a bike")
     print("2 - Iniciar processo de vistoria")
     print("3 - Relatório")
     print("4 - Verificar status da vistoria")
@@ -466,7 +466,7 @@ while opcao != 6:
         case 4: 
             print("Os seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.")
             print("Deseja conferir o status da análise da vistoria?")
-            confirmVistoria = int(input("\n1 - Sim \n 2 - Não \nSelecione uma opção: "))
+            confirmVistoria = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
             if confirmVistoria == 1: 
                 if aprovado == True:
                     print("Seus dados foram aprovados! Agora assine a apólice.")
@@ -475,9 +475,9 @@ while opcao != 6:
                 elif emAnalise == True:
                     print("Seus dados estão em análise. Confira novamente mais tarde.")
                 elif faltandoDocs == True:
-                    print("Está faltando documentos para realizar a vistoria. Revise seus dados.")
+                    print("\nEstá faltando documentos para realizar a vistoria. Revise seus dados.")
             else:
-                print("Ok. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
+                print("\nOk. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
 
 
 
@@ -537,7 +537,7 @@ while opcao != 6:
 
                         case _:
                             print("Escolha uma opção válida!") 
-                             
+
                 except ValueError:
                     print("Formato de escolha incorreta!")
                     nmrinvalido = 1
