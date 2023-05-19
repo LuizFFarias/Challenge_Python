@@ -44,8 +44,8 @@ registro = 0
 #Vistoria
 aprovado = 0
 reprovado = 0
-emAnalise = 0
-faltandoDocs = True
+emAnalise = True
+faltandoDocs = 0
 
 #Feedback
 fbescolha = 0
@@ -76,22 +76,6 @@ def TipoSeguro():
                     + "\n6- Para ciclistas por hobbie"
                     +"\n7- Para ciclistas que viajam com a bike")
         
-        # try:
-        #     seguro = int(input('\nQual dessas opções combina mais com seu estilo?: '))
-        #     if seguro < 1 or seguro > 7:
-        #         print("\nDigite um número válido!")
-        #     confirma = Confirmacao()
-        #     if confirma == 1:
-        #         print('\nSeguro selecionado')
-        #     else:
-        #         print('\nEscolha novamente o seguro!')    
-        #         seguro = 0
-
-        # except ValueError:
-        #     print("Digite um número válido!")
-        #     seguro = 0
-        # return seguro
-
 #Para escolher um tipo de seguro        
 def RegistroSeguro():
     confirma = 2
@@ -197,6 +181,14 @@ def RegistroBike():
             if acessorios != 0:
                 print(f"Valor dos acessórios: R${acessorios}")
                 print(f'Valor total: R${valorbike + acessorios}')
+
+        if bikeopcao == 2:
+            print(f"\nModelo: {modelo}")
+            print(f"Número de série: {numserie}")
+            print(f"Nota fiscal: {ntfiscal}")
+            print(f"Cor: {cor}")
+            print(f"Valor da bike: R${valorbike}")
+
         rgopcao = Confirmacao()
 
         if rgopcao == 1:
@@ -290,7 +282,6 @@ def MidiaVistoria():
         if confirmFoto == 1:
             print("\nFoto adicionada.")
 
-
         print("\n x- Foto dos acessórios (se for visível)")
         confirmFoto = Confirmacao()
         while confirmFoto == 2:
@@ -320,19 +311,6 @@ def MidiaVistoria():
         if confirmFoto == 1:
             print("\nVídeo adicionado.")
 
-
-#Para informar um feedback
-def Feedback():
-    fb = input("\nEscreva seu feedback: ")
-    fbopcao2 = Confirmacao()
-    if fbopcao2 == 1:
-        print("Feedback enviado!")
-    elif fbopcao2 == 2:
-        print("Feedbck cancelado!")
-    else:
-        print("Digite uma opção válida!")
-    return fbopcao2, fb
-
 #Para mostrar o tipo de seguro escolhido no relatório
 def TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7):
     match opcSeguro:
@@ -355,7 +333,7 @@ def TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7):
 
 #Para fazer um feedback
 def FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas):
-    match fbopcao:
+    match opcoes:
         case 1:
             print(fbtempo)
         case 2:
@@ -408,13 +386,13 @@ while opcao != 6:
           print("\nEncerrando, até a próxima!")
           break
 
+
 #Tipo de seguro
         case 1: 
             # opcSeguro = 0
             # while opcSeguro < 1 or opcSeguro > 7:
             TipoSeguro()
-            
-            
+                        
 
 #Vistoria
         case 2:
@@ -441,28 +419,28 @@ while opcao != 6:
                     + "\n-Foto dos acessórios (se for visível)"
                     + "\n-Vídeo mostrando a bike completa"
                     + "\n-Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto")
+            print("\nObservação: neste momento, como ainda não é possível enviar fotos e vídeos, esta parte não é totalmente funcional")
             
             MidiaVistoria()
             print("\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.")
-            print("Deseja conferir o status da análise da vistoria?")
+            print("\nDeseja conferir o status da análise da vistoria?")
             confirmVistoria = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
             if confirmVistoria == 1: 
                 if aprovado == True:
-                    print("Seus dados foram aprovados! Agora assine a apólice.")
+                    print("\nSeus dados foram aprovados! Agora assine a apólice.")
                 elif reprovado == True:
-                    print("Seus dados foram reprovados. Refaça o processo de vistoria.")
+                    print("\nSeus dados foram reprovados. Refaça o processo de vistoria.")
                 elif emAnalise == True:
-                    print("Seus dados estão em análise. Confira novamente mais tarde.")
+                    print("\nSeus dados estão em análise. Confira novamente mais tarde.")
                 elif faltandoDocs == True:
-                    print("Está faltando documentos para realizar a vistoria. Revise seus dados.")
+                    print("\nEstá faltando documentos para realizar a vistoria. Revise seus dados.")
             else:
                 print("Ok. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
-
 
         
 #Relatório
         case 3:
-            print("\nRelatório dos dados adcionados: ")
+            print("\nRelatório dos dados adicionados: ")
             TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7)
             
             if confCli == 1:
@@ -475,7 +453,6 @@ while opcao != 6:
                 print(f"Endereço: {endereco} {numresidencia}  {complemento}")
             else:
                 print(f'\nNenhum dado foi adicionado.')
-
 
             if registro == 1:
                 print(f"\nRelatório do registro da bike:  \nModelo: {modelo}")
@@ -490,7 +467,6 @@ while opcao != 6:
             if fbescolha == 1:
                 print("FeedBack adicionado: ")
                 FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas)
-
 
 
 #Status da vistoria
@@ -511,67 +487,24 @@ while opcao != 6:
                 print("\nOk. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
 
 
-
 #Apólice 
         case 5:
-            Apolice()
-               
+            Apolice()               
             
             
 #Feedback
-        case 6: 
-            print("\nQual o motivo do feedback? \n1 - Tempo de espera")
-            print("2 - Serviços")
-            print("3 - Problemas")
-            print("4 - Atendimeto")
-            print("5 - Dúvidas")
-            print("6 - Voltar ao menu")
-            fbescolha = 0 
-            fbopcao = 0 
-            while fbopcao < 1 or fbopcao > 6 or nmrinvalido == 1:
-                nmrinvalido = 0
-                try:
-                    fbopcao = int(input("Selecione uma opção: "))
-                    match fbopcao:
-                        case 1:
-                            fbescolha = 2
-                            while fbescolha == 2:
-                                fbescolha, fbtempo = Feedback()
-                                ntTempo = Nota()
-                        
-                        case 2:
-                            fbescolha = 2
-                            while fbescolha == 2:
-                                fbescolha, fbservicos = Feedback()
-                                ntServicos = Nota()
-
-                        case 3:
-                            fbescolha = 2
-                            while fbescolha == 2:
-                                fbescolha, fbproblemas = Feedback()
-                                ntProblema = Nota()
-
-                        case 4:
-                            fbescolha = 2
-                            while fbescolha == 2:
-                                fbescolha, fbatendimentos = Feedback()
-                                ntAtendimento = Nota()
-
-                        case 5:
-                            fbescolha = 2
-                            while fbescolha == 2:
-                                fbescolha, fbduvidas = Feedback()
-                                ntDuvidas = Nota()
-
-                        case 6:
-                            print('\nVoltando para o menu')
-
-                        case _:
-                            print("Escolha uma opção válida!") 
-
-                except ValueError:
-                    print("Formato de escolha incorreta!")
-                    nmrinvalido = 1
-
-        case 0:
-            MidiaVistoria()
+        case 6:
+            opcoes = [
+                {"motivo": "tempo para fazer vistoria", "nota": None},
+                {"motivo": "serviços fornecido", "nota": None},
+                {"motivo": "problemas", "nota": None},
+                {"motivo": "atendimento", "nota": None},
+                {"motivo": "resolução de dúvidas", "nota": None}
+]           
+            for feedback in opcoes:
+                motivo = feedback["motivo"]
+                print(f"\nAvaliar {motivo}")
+                feedback["nota"] = Nota()
+                print("Feedback enviado")
+                print(f"Nota: {feedback['nota']}")
+            
