@@ -142,7 +142,7 @@ def RegistroCliente():
                 print(f"Endereço: {endereco} {numresidencia}  {complemento}")
                 cdopcao4 = Confirmacao()
                 if cdopcao4 == 1:
-                    print("Cadstro realizado.")
+                    print("Cadastro realizado.")
         if cdopcao2 == 2:
                 print(f"Nome: {nome}")
                 print(f"CNH: {cnh}")
@@ -150,7 +150,7 @@ def RegistroCliente():
                 print(f"Endereço: {endereco} {numresidencia}  {complemento}")
                 cdopcao4 = Confirmacao()
                 if cdopcao4 == 1:
-                    print("\nCadstro realizado.")
+                    print("\nCadastro realizado.")
                 elif cdopcao4 == 2:
                     print("Faça novamente o cadastro.")
                 else:
@@ -422,7 +422,7 @@ while opcao != 6:
             print("\nObservação: neste momento, como ainda não é possível enviar fotos e vídeos, esta parte não é totalmente funcional")
             
             MidiaVistoria()
-            print("\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.")
+            print("\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu e-mail ou aqui pelo site.")
             print("\nDeseja conferir o status da análise da vistoria?")
             confirmVistoria = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
             if confirmVistoria == 1: 
@@ -495,15 +495,15 @@ while opcao != 6:
 #Feedback
         case 6:
             opcoes = [
-                {"motivo": "tempo para fazer vistoria", "nota": None},
-                {"motivo": "serviços fornecido", "nota": None},
-                {"motivo": "problemas", "nota": None},
-                {"motivo": "atendimento", "nota": None},
-                {"motivo": "resolução de dúvidas", "nota": None}
+                {"motivo": "Tempo para fazer vistoria", "nota": None},
+                {"motivo": "Serviços fornecido", "nota": None},
+                {"motivo": "Problemas", "nota": None},
+                {"motivo": "Atendimento", "nota": None},
+                {"motivo": "Resolução de dúvidas", "nota": None}
 ]           
             for feedback in opcoes:
                 motivo = feedback["motivo"]
-                print(f"\nAvaliar {motivo}")
+                print(f"\n{motivo}")
                 feedback["nota"] = Nota()
                 print("Feedback enviado")
                 print(f"Nota: {feedback['nota']}")
