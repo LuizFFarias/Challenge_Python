@@ -210,7 +210,6 @@ def MidiaVistoria():
         print("\nClique no x para adicionar a foto: ")
         
         print("\n x- Foto da bike inteira de lado")
-            
         confirmFoto = Confirmacao()
         while confirmFoto == 2:
             print("Repita o processo")
@@ -219,85 +218,108 @@ def MidiaVistoria():
         if confirmFoto == 1:
             print("\nFoto adicionada.")
             
-                    
-            
         print("\n x- Foto do número de série")
         confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print("\nFoto adicionada.")
-        else: 
+        while confirmFoto == 2:
             print("Repita o processo")
+            print("\n x - Foto do número de série")
+            confirmFoto = Confirmacao()
+        if confirmFoto == 1:
+            print("\nFoto adicionada")
+        
         print("\n x- Foto da roda")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto da roda")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+
         print("\n x- Foto dos freios")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2: 
+            print("Repita o processo")
+            print("\n x- Foto dos freios")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+        
         print("\n x- Foto do guidão")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto do guidão")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+
         print("\n x- Foto dos pedais")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto dos pedais")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+        
         print("\n x- Foto da corrente")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto da corrente")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+
         print("\n x- Foto sua com a bike")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto sua com a bike")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+
         print("\n x- Foto da bike de frente")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto da bike de frente")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+
+
         print("\n x- Foto dos acessórios (se for visível)")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\n x- Foto dos acessórios (se for visível)")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nFoto adicionada.")
-        else: 
-            print("Repita o processo")
+
         print("\nClique no x para adicionar os vídeos: ")
+
         print("\nx -Vídeo mostrando a bike completa")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2: 
+            print("Repita o processo")
+            print("\nx -Vídeo mostrando a bike completa")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nVídeo adicionado.")
-        else: 
-            print("Repita o processo")
+
         print("\nx -Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto")
         confirmFoto = Confirmacao()
-
+        while confirmFoto == 2:
+            print("Repita o processo")
+            print("\nx -Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto")
+            confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print("\nVídeo adicionado.")
-        else: 
-            print("Repita o processo")
+
 
 #Para informar um feedback
 def Feedback():
