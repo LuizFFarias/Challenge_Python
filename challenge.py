@@ -1,63 +1,60 @@
-import datetime
-i = 0
+# #Tipo de seguro
+# dtatual = datetime.datetime.now()
+# cont = 0
+# opcao = 0
+# seg1 = '1- Para ciclistas que pedalam na rua'
+# seg2 = '2- Para ciclistas de maratona'
+# seg3 = '3- Para ciclistas que pedalam em montanhas'
+# seg4 = '4- Para ciclistas que pedalam em pedras e rochas'
+# seg5 = '5- Para ciclistas que pedalam em terra e mato'
+# seg6 = '6- Para ciclistas por hobbie'
+# seg7 = '7- Para ciclistas que viajam com a bike'
+# opcSeguro = 0
 
-#Tipo de seguro
-dtatual = datetime.datetime.now()
-cont = 0
-opcao = 0
-seg1 = '1- Para ciclistas que pedalam na rua'
-seg2 = '2- Para ciclistas de maratona'
-seg3 = '3- Para ciclistas que pedalam em montanhas'
-seg4 = '4- Para ciclistas que pedalam em pedras e rochas'
-seg5 = '5- Para ciclistas que pedalam em terra e mato'
-seg6 = '6- Para ciclistas por hobbie'
-seg7 = '7- Para ciclistas que viajam com a bike'
-opcSeguro = 0
+# # #Dados do cliente
+# # nome = 0
+# # email = 0
+# # rg = 0
+# # cnh = 0
+# # cpf = 0
+# # telefone = 0
+# # endereco = 0
+# # cep = 0
+# # bairro = ''
+# # numresidencia = 0
+# # complemento = ""
+# # cidade = ""
+# # estado = ""
+# # pais = ""
+# # cadastro = 0
+# # confCli = 0
 
-#Dados do cliente
-nome = 0
-email = 0
-rg = 0
-cnh = 0
-cpf = 0
-telefone = 0
-endereco = 0
-cep = 0
-bairro = ''
-numresidencia = 0
-complemento = ""
-cidade = ""
-estado = ""
-pais = ""
-cadastro = 0
-confCli = 0
+# #Bike
+# numserie = 0
+# modelo = 0
+# valorbike = 0
+# cor = 0
+# ntfiscal = 0
+# acessorios = 0
+# registro = 0
 
-#Bike
-numserie = 0
-modelo = 0
-valorbike = 0
-cor = 0
-ntfiscal = 0
-acessorios = 0
-registro = 0
+# #Vistoria
+# aprovado = 0
+# reprovado = 0
+# emAnalise = True
+# faltandoDocs = 0
 
-#Vistoria
-aprovado = 0
-reprovado = 0
-emAnalise = True
-faltandoDocs = 0
+# #Feedback
+# fbescolha = 0
+# fbtempo = 0
+# fbservicos = 0
+# fbproblemas = 0
+# fbatendimentos = 0
+# fbduvidas = 0
 
-#Feedback
-fbescolha = 0
-fbtempo = 0
-fbservicos = 0
-fbproblemas = 0
-fbatendimentos = 0
-fbduvidas = 0
-
-#Relatório
-cadastro = 0
-registro_bike = 0
+# #Relatório
+# cadastro = 0
+# registro_bike = 0
 
 #Para o cliente confirmar se o que informou está correto
 def Confirmacao():
@@ -102,15 +99,12 @@ def RegistroSeguro():
         except ValueError:
             print("Digite um número válido!")
             seguro = 0 
-            return confirma
+    return confirma
 
 #Para pegar as informações do cliente
 def RegistroCliente():
-    complemento = ""
-    rg = ""
-    cnh = 0
-    cdopcao4 = 2
 
+    cdopcao4 = 0
     while cdopcao4 != 1:
         nome = input("\nDigite seu nome: ")
         email = input("\nInforme seu email: ")
@@ -159,8 +153,8 @@ def RegistroCliente():
             
 #Para pegar as informações do bike
 def RegistroBike():
-    rgopcao = 2
 
+    rgopcao = 0
     while rgopcao != 1:
         modelo = input("\nInforme o modelo da bike: ")
         numserie = int(input("Digite o número de série: "))
@@ -199,6 +193,7 @@ def RegistroBike():
 
 #Para enviar as fotos e vídeos para a vistoria
 def MidiaVistoria():
+        
         print("\nClique no x para adicionar a foto: ")
         
         print("\n x- Foto da bike inteira de lado")
@@ -313,6 +308,9 @@ def MidiaVistoria():
 
 #Para mostrar o tipo de seguro escolhido no relatório
 def TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7):
+
+    opcSeguro = 0
+
     match opcSeguro:
         case 1:
             print(f'Opção de Seguro: {seg1}')
@@ -333,7 +331,8 @@ def TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7):
 
 #Para fazer um feedback
 def FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas):
-    match opcoes:
+
+    match opcaofb:
         case 1:
             print(fbtempo)
         case 2:
@@ -347,6 +346,7 @@ def FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas):
 
 #Para mostrar o status da vistoria
 def Apolice():
+
     if aprovado == True:
         print("A apólice foi enviada para o seu email. No seu email, foram enviadas instruções de como assinar a apólice e como enviar ela de volta para empresa.")
     elif reprovado == True:
@@ -358,7 +358,8 @@ def Apolice():
 
 #Para emitir a apólice
 def EmitirApolice():
-    #pegar todos os dados do cliente, dados da bike, assinatura do cliente karaio
+
+    #pegar todos os dados do cliente, dados da bike, assinatura do cliente
     print(f'Eu, {nome}, portador do rg nº {rg} e cpf nº{cpf}, morador do enedreço {endereco}  {numresidencia}  {complemento}, cep: {cep}' 
           +f'afirmo que escolhi o tipo de seguro {TpSeguro_Relatorio} e que os dados da bike modelo: {modelo}, cor: {cor}, valor total: R${valorbike + acessorios}, número de série: {numserie}, nota fiscal: {ntfiscal}, são verdadeiros. Tenho ciência da veracidade e da importância da prestação de informações corretas.'
           + 'Visto isso, eu concordo com a realização dessa vistoria e do seguro adquirido por mim')
@@ -368,10 +369,10 @@ def EmitirApolice():
 def Nota():
     nota = int(input("Qual a sua nota para esse serviço? (0 - 10): "))
     return nota
-
     
 #Menu de opções
-while opcao != 6:
+opcaomenu = 0
+while opcaomenu != 7:
     print("\nOlá, em que a Technobike pode te ajudar hoje?")
     print("1 - Conheça os tipos de seguro para a bike")
     print("2 - Iniciar processo de vistoria")
@@ -380,8 +381,8 @@ while opcao != 6:
     print("5 - Emissão da apólice")
     print("6 - Feedback")
     print("7 - Encerrar")
-    opcao = int(input("\nSelecione uma das opções acima: "))
-    match opcao:
+    opcaomenu = int(input("\nSelecione uma das opções acima: "))
+    match opcaomenu:
         case 7:
           print("\nEncerrando, até a próxima!")
           break
@@ -399,10 +400,18 @@ while opcao != 6:
             registro = 2
             confSeguro = 2
             confCli = 2
+
+            aprovado = False
+            reprovado = False
+            emAnalise = True
+            faltandoDocs = False
+
             # while confSeguro == 2:
             confSeguro = RegistroSeguro()
             # while confCli == 2:
             confCli, rgcpf = RegistroCliente()
+            confCli = ''
+            rgcpf = ''
             # while registro == 2:
             registro = RegistroBike()
             registro_bike = 1 
@@ -440,6 +449,34 @@ while opcao != 6:
         
 #Relatório
         case 3:
+            seg1 = ''
+            seg2 = ''
+            seg3 = ''
+            seg4 = ''
+            seg5 = ''
+            seg6 = ''
+            seg7 = ''
+            nome = ''
+            rg = ''
+            cnh = ''
+            cpf = ''
+            endereco = ''
+            numresidencia = ''
+            complemento = ''
+            cep = 0
+            modelo = ''
+            numserie = 0
+            ntfiscal = 0
+            cor = ''
+            valorbike = 0
+            acessorios = 0
+            fbescolha = 0
+            fbtempo = 0
+            fbservicos = 0
+            fbproblemas = 0
+            fbatendimentos = 0
+            fbduvidas = 0
+
             print("\nRelatório dos dados adicionados: ")
             TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7)
             
@@ -494,14 +531,14 @@ while opcao != 6:
             
 #Feedback
         case 6:
-            opcoes = [
+            opcaofb = [
                 {"motivo": "Tempo para fazer vistoria", "nota": None},
                 {"motivo": "Serviços fornecido", "nota": None},
                 {"motivo": "Problemas", "nota": None},
                 {"motivo": "Atendimento", "nota": None},
                 {"motivo": "Resolução de dúvidas", "nota": None}
 ]           
-            for feedback in opcoes:
+            for feedback in opcaofb:
                 motivo = feedback["motivo"]
                 print(f"\n{motivo}")
                 feedback["nota"] = Nota()
