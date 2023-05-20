@@ -346,6 +346,10 @@ def FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas):
 
 #Para mostrar o status da vistoria
 def Apolice():
+    aprovado = False
+    reprovado = False
+    emAnalise = True
+    faltandoDocs = False
 
     if aprovado == True:
         print("A apólice foi enviada para o seu email. No seu email, foram enviadas instruções de como assinar a apólice e como enviar ela de volta para empresa.")
@@ -369,6 +373,136 @@ def EmitirApolice():
 def Nota():
     nota = int(input("Qual a sua nota para esse serviço? (0 - 10): "))
     return nota
+def Vistoria():
+    registro = 2
+    confSeguro = 2
+    confCli = 2
+
+    aprovado = False
+    reprovado = False
+    emAnalise = True
+    faltandoDocs = False
+
+    # while confSeguro == 2:
+    confSeguro = RegistroSeguro()
+    # while confCli == 2:
+    confCli, rgcpf = RegistroCliente()
+    confCli = ''
+    rgcpf = ''
+    # while registro == 2:
+    registro = RegistroBike()
+    registro_bike = 1 
+    print("\nPara finalizar a vistoria é necessário que sejam tiradas: "+ 
+            "\n-Foto da bike inteira de lado"
+            + "\n-Foto do número de série"
+            + "\n-Foto da roda"
+            + "\n-Foto dos freios"
+            + "\n-Foto do guidão"
+            + "\n-Foto dos pedais"
+            + "\n-Foto da corrente"
+            + "\n-Foto sua com a bike"
+            + "\n-Foto da bike de frente"
+            + "\n-Foto dos acessórios (se for visível)"
+            + "\n-Vídeo mostrando a bike completa"
+            + "\n-Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto")
+    print("\nObservação: neste momento, como ainda não é possível enviar fotos e vídeos, esta parte não é totalmente funcional")
+    
+    MidiaVistoria()
+    print("\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu e-mail ou aqui pelo site.")
+    print("\nDeseja conferir o status da análise da vistoria?")
+    confirmVistoria = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
+    if confirmVistoria == 1: 
+        if aprovado == True:
+            print("\nSeus dados foram aprovados! Agora assine a apólice.")
+        elif reprovado == True:
+            print("\nSeus dados foram reprovados. Refaça o processo de vistoria.")
+        elif emAnalise == True:
+            print("\nSeus dados estão em análise. Confira novamente mais tarde.")
+        elif faltandoDocs == True:
+            print("\nEstá faltando documentos para realizar a vistoria. Revise seus dados.")
+    else:
+        print("Ok. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
+
+def Relatorio():
+    seg1 = ''
+    seg2 = ''
+    seg3 = ''
+    seg4 = ''
+    seg5 = ''
+    seg6 = ''
+    seg7 = ''
+    nome = ''
+    rg = ''
+    cnh = ''
+    cpf = ''
+    endereco = ''
+    numresidencia = ''
+    complemento = ''
+    cep = 0
+    modelo = ''
+    numserie = 0
+    ntfiscal = 0
+    cor = ''
+    valorbike = 0
+    acessorios = 0
+    fbescolha = 0
+    fbtempo = 0
+    fbservicos = 0
+    fbproblemas = 0
+    fbatendimentos = 0
+    fbduvidas = 0
+
+    print("\nRelatório dos dados adicionados: ")
+    TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7)
+    
+    if confCli == 1:
+        print(f"Nome: {nome}")
+        if rgcpf ==1:
+            print(f"RG: {rg}")
+        elif rgcpf == 2:
+            print(f"CNH: {cnh}")
+        print(f"CPF: {cpf}")
+        print(f"Endereço: {endereco} {numresidencia}  {complemento}")
+    else:
+        print(f'\nNenhum dado foi adicionado.')
+
+    if registro == 1:
+        print(f"\nRelatório do registro da bike:  \nModelo: {modelo}")
+        print(f"Número de série: {numserie}")
+        print(f"Nota fiscal: {ntfiscal}")
+        print(f"Cor: {cor}")
+        if acessorios != 0:
+            print(f"Valor dos acessórios: {acessorios}")
+    else:
+        print("\nNenhum registro foi adicionado.")
+    
+    if fbescolha == 1:
+        print("FeedBack adicionado: ")
+        FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas)
+
+def Status():
+    faltandoDocs = False
+    reprovado = False
+    aprovado = False
+    emAnalise = True
+    print("Os seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.")
+    print("Deseja conferir o status da análise da vistoria?")
+    confirmVistoria = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
+    if confirmVistoria == 1: 
+        if aprovado == True:
+            print("Seus dados foram aprovados! Agora assine a apólice.")
+        elif reprovado == True:
+            print("Seus dados foram reprovados. Refaça o processo de vistoria.")
+        elif emAnalise == True:
+            print("Seus dados estão em análise. Confira novamente mais tarde.")
+        elif faltandoDocs == True:
+            print("\nEstá faltando documentos para realizar a vistoria. Revise seus dados.")
+    else:
+        print("\nOk. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
+    return emAnalise
+
+
+
     
 #Menu de opções
 opcaomenu = 0
@@ -397,132 +531,15 @@ while opcaomenu != 7:
 
 #Vistoria
         case 2:
-            registro = 2
-            confSeguro = 2
-            confCli = 2
-
-            aprovado = False
-            reprovado = False
-            emAnalise = True
-            faltandoDocs = False
-
-            # while confSeguro == 2:
-            confSeguro = RegistroSeguro()
-            # while confCli == 2:
-            confCli, rgcpf = RegistroCliente()
-            confCli = ''
-            rgcpf = ''
-            # while registro == 2:
-            registro = RegistroBike()
-            registro_bike = 1 
-            print("\nPara finalizar a vistoria é necessário que sejam tiradas: "+ 
-                    "\n-Foto da bike inteira de lado"
-                    + "\n-Foto do número de série"
-                    + "\n-Foto da roda"
-                    + "\n-Foto dos freios"
-                    + "\n-Foto do guidão"
-                    + "\n-Foto dos pedais"
-                    + "\n-Foto da corrente"
-                    + "\n-Foto sua com a bike"
-                    + "\n-Foto da bike de frente"
-                    + "\n-Foto dos acessórios (se for visível)"
-                    + "\n-Vídeo mostrando a bike completa"
-                    + "\n-Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto")
-            print("\nObservação: neste momento, como ainda não é possível enviar fotos e vídeos, esta parte não é totalmente funcional")
-            
-            MidiaVistoria()
-            print("\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu e-mail ou aqui pelo site.")
-            print("\nDeseja conferir o status da análise da vistoria?")
-            confirmVistoria = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
-            if confirmVistoria == 1: 
-                if aprovado == True:
-                    print("\nSeus dados foram aprovados! Agora assine a apólice.")
-                elif reprovado == True:
-                    print("\nSeus dados foram reprovados. Refaça o processo de vistoria.")
-                elif emAnalise == True:
-                    print("\nSeus dados estão em análise. Confira novamente mais tarde.")
-                elif faltandoDocs == True:
-                    print("\nEstá faltando documentos para realizar a vistoria. Revise seus dados.")
-            else:
-                print("Ok. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
-
+           Vistoria()
         
 #Relatório
         case 3:
-            seg1 = ''
-            seg2 = ''
-            seg3 = ''
-            seg4 = ''
-            seg5 = ''
-            seg6 = ''
-            seg7 = ''
-            nome = ''
-            rg = ''
-            cnh = ''
-            cpf = ''
-            endereco = ''
-            numresidencia = ''
-            complemento = ''
-            cep = 0
-            modelo = ''
-            numserie = 0
-            ntfiscal = 0
-            cor = ''
-            valorbike = 0
-            acessorios = 0
-            fbescolha = 0
-            fbtempo = 0
-            fbservicos = 0
-            fbproblemas = 0
-            fbatendimentos = 0
-            fbduvidas = 0
-
-            print("\nRelatório dos dados adicionados: ")
-            TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7)
+            Relatorio()
             
-            if confCli == 1:
-                print(f"Nome: {nome}")
-                if rgcpf ==1:
-                    print(f"RG: {rg}")
-                elif rgcpf == 2:
-                    print(f"CNH: {cnh}")
-                print(f"CPF: {cpf}")
-                print(f"Endereço: {endereco} {numresidencia}  {complemento}")
-            else:
-                print(f'\nNenhum dado foi adicionado.')
-
-            if registro == 1:
-                print(f"\nRelatório do registro da bike:  \nModelo: {modelo}")
-                print(f"Número de série: {numserie}")
-                print(f"Nota fiscal: {ntfiscal}")
-                print(f"Cor: {cor}")
-                if acessorios != 0:
-                    print(f"Valor dos acessórios: {acessorios}")
-            else:
-                print("\nNenhum registro foi adicionado.")
-            
-            if fbescolha == 1:
-                print("FeedBack adicionado: ")
-                FB_Relatorio(fbtempo, fbservicos, fbproblemas, fbatendimentos, fbduvidas)
-
-
 #Status da vistoria
         case 4: 
-            print("Os seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.")
-            print("Deseja conferir o status da análise da vistoria?")
-            confirmVistoria = int(input("\n1 - Sim \n2 - Não \nSelecione uma opção: "))
-            if confirmVistoria == 1: 
-                if aprovado == True:
-                    print("Seus dados foram aprovados! Agora assine a apólice.")
-                elif reprovado == True:
-                    print("Seus dados foram reprovados. Refaça o processo de vistoria.")
-                elif emAnalise == True:
-                    print("Seus dados estão em análise. Confira novamente mais tarde.")
-                elif faltandoDocs == True:
-                    print("\nEstá faltando documentos para realizar a vistoria. Revise seus dados.")
-            else:
-                print("\nOk. Acompanhe no seu email ou nessa tela o atual status da sua vistoria para saber as informações de como prosseguir.")
-
+           statusVistoria = Status()
 
 #Apólice 
         case 5:
