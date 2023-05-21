@@ -454,6 +454,9 @@ def Relatorio():
 
     print("\nRelatório dos dados adicionados: ")
     TpSeguro_Relatorio(seg1, seg2, seg3, seg4, seg5, seg6, seg7)
+    confCli = 1
+    rgcpf = 0
+    registro = 1 
     
     if confCli == 1:
         print(f"Nome: {nome}")
