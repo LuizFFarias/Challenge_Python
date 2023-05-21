@@ -362,6 +362,19 @@ def Apolice():
 
 #Para emitir a apólice
 def EmitirApolice():
+    nome = ''
+    rg = ''
+    cpf = ''
+    endereco = ''
+    numresidencia = ''
+    complemento = ''
+    cep = 0
+    modelo = ''
+    cor = ''
+    valorbike = 0
+    acessorios = 0
+    numserie = 0
+    ntfiscal = 0
 
     #pegar todos os dados do cliente, dados da bike, assinatura do cliente
     print(f'Eu, {nome}, portador do rg nº {rg} e cpf nº{cpf}, morador do enedreço {endereco}  {numresidencia}  {complemento}, cep: {cep}' 
@@ -457,7 +470,7 @@ def Relatorio():
     confCli = 1
     rgcpf = 0
     registro = 1 
-    
+
     if confCli == 1:
         print(f"Nome: {nome}")
         if rgcpf ==1:
