@@ -273,16 +273,18 @@ def Nota():
            
     
 #Menu de opções
-opcaomenu = 0
-
-while opcaomenu != 5:
+while (True):
     print('\nOlá, em que a Technobike pode teseguro para a bike')
     print('1 - Tipo de seguro')
     print('2 - Iniciar processo de vistoria')
     print('3 - Conferir status da vistoria')
     print('4 - Feedback')
     print('5 - Encerrar programa')
-    opcaomenu = int(input('\nSelecione uma das opções acima: '))
+
+    try:
+        opcaomenu = int(input('\nSelecione uma das opções acima: '))
+    except ValueError:
+        print('O valor deve ser um número inteiro')
     
     match opcaomenu:
 #Tipos de seguro
@@ -322,3 +324,6 @@ while opcaomenu != 5:
         case 5:
             print('\nFim de programa, até a próxima!')
             break            
+
+        case _:
+            print('\nOpção incorreta')
