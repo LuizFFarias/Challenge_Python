@@ -26,10 +26,8 @@ def IdentificarCliente():
 
     while opcRegistro == 2:
         cpf = input('\nDigite seu CPF: ')
-        opcRegistro = int(input(f'\nO CPF {cpf} está correto?'
-                                + '\n1 - Sim'
-                                + '\n2 - Não'
-                                + '\nEscolha uma opção: '))
+        opcRegistro = Confirmacao()
+
         if opcRegistro == 1:
             tuplaCPF = (cpf)
             print(f'\nO CPF {tuplaCPF} foi encontrado. Seja bem vindo!')
@@ -51,6 +49,7 @@ def RegistroSeguro():
             seguro = int(input('\nQual dessas opções combina mais com seu estilo? '))
             if seguro < 1 or seguro > 7:
                 print('\nDigite um número válido!')
+
             confirma = Confirmacao()
 
             if confirma == 1:
@@ -228,6 +227,7 @@ def Vistoria():
             print('\nEstá faltando documentos para realizar a vistoria. Revise seus dados.')
     else:
         print('Opção incorreta')
+        
 
 #Case 3: informa o status da vistoria
 def Status():
