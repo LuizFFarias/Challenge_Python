@@ -285,6 +285,7 @@ while (True):
         opcaomenu = int(input('\nSelecione uma das opções acima: '))
     except ValueError:
         print('O valor deve ser um número inteiro')
+        continue
     
     match opcaomenu:
 #Tipos de seguro
@@ -325,5 +326,6 @@ while (True):
             print('\nFim de programa, até a próxima!')
             break            
 
+## Para opções incorretas   
         case _:
             print('\nOpção incorreta')
