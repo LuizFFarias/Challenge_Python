@@ -26,7 +26,13 @@ def TipoSeguro():
 def IdentificarCliente():
     while True:
         cpf = input('\nDigite seu CPF: ')
-        Confirmacao()
+        confirma = Confirmacao()
+
+        if confirma == 1:
+            cpf_no_sistema.append(cpf)
+        else:
+            print('Digite novamente')
+
 
         if VerificarCPF(cpf):
             print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
@@ -46,14 +52,16 @@ def RegistroSeguro():
                     + '\n5- Para ciclistas que pedalam em terra e mato'
                     + '\n6- Para ciclistas por hobbie'
                     + '\n7- Para ciclistas que viajam com a bike')
+        seguro = int(input('\nQual dessas opções combina mais com seu estilo? '))
+        
         try:
-            seguro = int(input('\nQual dessas opções combina mais com seu estilo? '))
             if seguro < 1 or seguro > 7:
                 print('\nDigite um número válido!')
-                
+
             confirma = Confirmacao()
             if confirma == 1:
                 print('\nSeguro selecionado')
+                break
             elif confirma == 2:
                 print('\nEscolha novamente o seguro!')
                     
@@ -184,7 +192,7 @@ def Vistoria():
     faltandoDocs = False
 
     IdentificarCliente()
-
+        
     RegistroSeguro()
 
     print('\n-------------------------------------------')
@@ -202,17 +210,14 @@ def Vistoria():
             + '\n-Vídeo mostrando a bike completa'
             + '\n-Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto')
     print('\nObservação: neste momento, como ainda não é possível enviar fotos e vídeos, esta parte não é totalmente funcional')
-    
     print('-----------------------------------')
     MidiaVistoria()
-    
     print('\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu e-mail ou aqui pelo site.')
-    
     print('------------------------------')
     print('\nDeseja conferir o status da análise da vistoria?')
     confirmVistoria = int(input('\n1 - Sim'
-                              + '\n2 - Não'
-                              + '\nSelecione uma opção: '))
+                            + '\n2 - Não'
+                            + '\nSelecione uma opção: '))
 
     if confirmVistoria == 1: 
         if aprovado == True:
@@ -223,11 +228,15 @@ def Vistoria():
             print('\nSeus dados estão em análise.')
         elif faltandoDocs == True:
             print('\nEstá faltando documentos para realizar a vistoria. Revise seus dados.')
+    elif confirmVistoria == 2:
+        print('\nOk. Você pode acompanhar no seu email ou voltar aqui para conferir o atual status da sua vistoria.')
     else:
         print('Opção incorreta')
 
+# Verifica a existência do CPF na lista
 def VerificarCPF(cpf):
     return cpf in cpf_no_sistema
+
 
 #Case 3: informa o status da vistoria
 def Status():
@@ -236,26 +245,32 @@ def Status():
     aprovado = False
     emAnalise = True
 
-    IdentificarCliente()
-
-    print('\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.')
-    print('\nDeseja conferir o status da análise da vistoria?')
-    confirmVistoria = int(input('\n1 - Sim'
-                              + '\n2 - Não' 
-                              + '\nSelecione uma opção: '))
-    if confirmVistoria == 1: 
-            if aprovado == True:
+    cpf = input('\nDigite seu CPF: ')
+    
+    if VerificarCPF(cpf):
+        print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
+        
+        print('\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.')
+        print('\nDeseja conferir o status da análise da vistoria?')
+        confirmVistoria = int(input('\n1 - Sim'
+                                  + '\n2 - Não' 
+                                  + '\nSelecione uma opção: '))
+        if confirmVistoria == 1: 
+            if aprovado:
                 print('Seus dados foram aprovados! Agora assine a apólice.')
-            elif reprovado == True:
+            elif reprovado:
                 print('Seus dados foram reprovados. Refaça o processo de vistoria.')
-            elif emAnalise == True:
+            elif emAnalise:
                 print('\nSeus dados estão em análise.')
-            elif faltandoDocs == True:
+            elif faltandoDocs:
                 print('Está faltando documentos para realizar a vistoria. Revise seus dados.')
+        elif confirmVistoria == 2:
+            print('\nOk. Você pode acompanhar no seu email ou voltar aqui para conferir o atual status da sua vistoria.')
+        else:
+            print('Opção incorreta')
+        return emAnalise
     else:
-        print("\nOk. Você pode acompanhar no seu email ou voltar aqui para conferir o atual status da sua vistoria.")
-
-    return emAnalise
+        print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
 
       
 #Case 4: para perguntar a nota do fedback
