@@ -1,3 +1,5 @@
+cpf_no_sistema = []
+
 #Para o cliente confirmar se o que informou está correto
 def Confirmacao():
     print('\nAs informações estão corretas?' 
@@ -28,9 +30,11 @@ def IdentificarCliente():
         cpf = input('\nDigite seu CPF: ')
         opcRegistro = Confirmacao()
 
-        if opcRegistro == 1:
-            tuplaCPF = (cpf)
-            print(f'\nO CPF {tuplaCPF} foi encontrado. Seja bem vindo!')
+        if VerificarCPF(cpf):
+            print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
+            break
+        else:
+            print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
 
 
 #Case 2: para escolher um tipo de seguro        
@@ -49,7 +53,7 @@ def RegistroSeguro():
             seguro = int(input('\nQual dessas opções combina mais com seu estilo? '))
             if seguro < 1 or seguro > 7:
                 print('\nDigite um número válido!')
-
+                
             confirma = Confirmacao()
 
             if confirma == 1:
@@ -227,7 +231,9 @@ def Vistoria():
             print('\nEstá faltando documentos para realizar a vistoria. Revise seus dados.')
     else:
         print('Opção incorreta')
-        
+
+def VerificarCPF(cpf):
+    return cpf in cpf_no_sistema
 
 #Case 3: informa o status da vistoria
 def Status():
