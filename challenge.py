@@ -24,11 +24,9 @@ def TipoSeguro():
 
 #Case 2: para identificar o cliente no sistema
 def IdentificarCliente():
-    opcRegistro = 2
-
-    while opcRegistro == 2:
+    while True:
         cpf = input('\nDigite seu CPF: ')
-        opcRegistro = Confirmacao()
+        Confirmacao()
 
         if VerificarCPF(cpf):
             print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
@@ -39,8 +37,7 @@ def IdentificarCliente():
 
 #Case 2: para escolher um tipo de seguro        
 def RegistroSeguro():
-    confirma = 2
-    while confirma != 1:
+    while True:
         print('\nEssas são as opções de seguro disponibilizadas pela nossa empresa: '
                     + '\n1- Para ciclistas que pedalam na rua'
                     + '\n2- Para ciclistas de maratona'
@@ -55,7 +52,6 @@ def RegistroSeguro():
                 print('\nDigite um número válido!')
                 
             confirma = Confirmacao()
-
             if confirma == 1:
                 print('\nSeguro selecionado')
             elif confirma == 2:
@@ -63,8 +59,6 @@ def RegistroSeguro():
                     
         except ValueError:
             print("Digite um número válido!")
-
-    return confirma
 
 
 #Case 2: para enviar as fotos e vídeos para a vistoria
@@ -279,7 +273,7 @@ def Nota():
            
     
 #Menu de opções
-while (True):
+while True:
     print('\nOlá, em que a Technobike pode teseguro para a bike')
     print('1 - Tipo de seguro')
     print('2 - Iniciar processo de vistoria')
@@ -331,6 +325,7 @@ while (True):
         case 5:
             print('\nFim de programa, até a próxima!')
             break            
+
 
 ## Para opções incorretas   
         case _:
