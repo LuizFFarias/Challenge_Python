@@ -1,5 +1,3 @@
-cpf_no_sistema = []
-
 #Para o cliente confirmar se o que informou está correto
 def Confirmacao():
     print('\nAs informações estão corretas?' 
@@ -20,25 +18,16 @@ def TipoSeguro():
                     + '\n6- Para ciclistas por hobbie'
                     + '\n7- Para ciclistas que viajam com a bike'
                     + '\n--------------------------------------------')
-        
 
 #Case 2: para identificar o cliente no sistema
 def IdentificarCliente():
     while True:
+        arquivo = open('clientesvistoria.txt', 'a')
         cpf = input('\nDigite seu CPF: ')
-        confirma = Confirmacao()
+        arquivo.write(cpf + '\n')
+        arquivo.close()
 
-        if confirma == 1:
-            cpf_no_sistema.append(cpf)
-        else:
-            print('Digite novamente')
-
-
-        if VerificarCPF(cpf):
-            print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
-            break
-        else:
-            print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
+        VerificarCPF()
 
 
 #Case 2: para escolher um tipo de seguro        
@@ -235,7 +224,14 @@ def Vistoria():
 
 # Verifica a existência do CPF na lista
 def VerificarCPF(cpf):
-    return cpf in cpf_no_sistema
+    with open('clientesvistoria.txt', 'r') as arquivo:
+        linhas = arquivo.readlines()
+        cpfs = [linha.strip() for linha in linhas]
+    
+    if cpf in cpfs:
+        print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
+    else:
+        print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
 
 
 #Case 3: informa o status da vistoria
