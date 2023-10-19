@@ -1,3 +1,5 @@
+import re
+
 #Para o cliente confirmar se o que informou está correto
 def Confirmacao():
     print('\nAs informações estão corretas?' 
@@ -5,6 +7,14 @@ def Confirmacao():
           + '\n2 - Não')
     confirm = int(input('\nSelecione uma opção: '))
     return confirm
+
+
+#Verifica se o CPF tem apenas 11 dígitos numéricos
+def TratarCPF(cpf):
+    if re.match(r'^\d{11}$', cpf):
+        return True
+    else:
+        return False
 
 
 #Case 1: mostrar os tipos de seguro
@@ -25,11 +35,15 @@ def IdentificarCliente():
     while True:
         arquivo = open('clientesvistoria.txt', 'a')
         cpf = input('\nDigite seu CPF: ')
-        arquivo.write(cpf + '\n')
-        arquivo.close()
+        
+        if TratarCPF(cpf):
+            arquivo.write(cpf + '\n')
+            arquivo.close()
 
-        if VerificarCPF(cpf):
-            break
+            if VerificarCPF(cpf):
+                break
+        else:
+            print(f'CPF {cpf} inválido. Tente novamente!')
 
 
 # Verifica a existência do CPF na lista
