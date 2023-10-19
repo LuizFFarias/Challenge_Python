@@ -1,5 +1,3 @@
-cpf_no_sistema = []
-
 #Para o cliente confirmar se o que informou está correto
 def Confirmacao():
     print('\nAs informações estão corretas?' 
@@ -20,25 +18,32 @@ def TipoSeguro():
                     + '\n6- Para ciclistas por hobbie'
                     + '\n7- Para ciclistas que viajam com a bike'
                     + '\n--------------------------------------------')
-        
 
 #Case 2: para identificar o cliente no sistema
 def IdentificarCliente():
     while True:
+        arquivo = open('clientesvistoria.txt', 'a')
         cpf = input('\nDigite seu CPF: ')
-        confirma = Confirmacao()
-
-        if confirma == 1:
-            cpf_no_sistema.append(cpf)
-        else:
-            print('Digite novamente')
-
+        arquivo.write(cpf + '\n')
+        arquivo.close()
 
         if VerificarCPF(cpf):
-            print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
             break
-        else:
-            print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
+
+
+# Verifica a existência do CPF na lista
+def VerificarCPF(cpf):
+    with open('clientesvistoria.txt', 'r') as arquivo:
+        linhas = arquivo.readlines()
+        cpfs = [linha.strip() for linha in linhas]
+    
+    if cpf in cpfs:
+        print(f'O CPF {cpf} foi encontrado. Seja bem vindo!')
+        return True
+    else:
+        print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
+        return False
+        
 
 
 #Case 2: para escolher um tipo de seguro        
@@ -182,7 +187,7 @@ def MidiaVistoria():
             confirmFoto = Confirmacao()
         if confirmFoto == 1:
             print('\nVídeo adicionado.')
-        
+
 
 #Case 2: iniciar o processo de vistoria
 def Vistoria():
@@ -233,10 +238,6 @@ def Vistoria():
     else:
         print('Opção incorreta')
 
-# Verifica a existência do CPF na lista
-def VerificarCPF(cpf):
-    return cpf in cpf_no_sistema
-
 
 #Case 3: informa o status da vistoria
 def Status():
@@ -248,8 +249,6 @@ def Status():
     cpf = input('\nDigite seu CPF: ')
     
     if VerificarCPF(cpf):
-        print(f'\nO CPF {cpf} foi encontrado. Seja bem vindo!')
-        
         print('\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.')
         print('\nDeseja conferir o status da análise da vistoria?')
         confirmVistoria = int(input('\n1 - Sim'
@@ -269,8 +268,6 @@ def Status():
         else:
             print('Opção incorreta')
         return emAnalise
-    else:
-        print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
 
       
 #Case 4: para perguntar a nota do fedback
