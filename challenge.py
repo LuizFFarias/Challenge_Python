@@ -1,3 +1,6 @@
+import re
+notas = []
+
 #Para o cliente confirmar se o que informou está correto
 def Confirmacao():
     print('\nAs informações estão corretas?' 
@@ -5,6 +8,14 @@ def Confirmacao():
           + '\n2 - Não')
     confirm = int(input('\nSelecione uma opção: '))
     return confirm
+
+
+#Verifica se o CPF tem apenas 11 dígitos numéricos
+def TratarCPF(cpf):
+    if re.match(r'^\d{11}$', cpf):
+        return True
+    else:
+        return False
 
 
 #Case 1: mostrar os tipos de seguro
@@ -19,16 +30,21 @@ def TipoSeguro():
                     + '\n7- Para ciclistas que viajam com a bike'
                     + '\n--------------------------------------------')
 
+
 #Case 2: para identificar o cliente no sistema
 def IdentificarCliente():
     while True:
         arquivo = open('clientesvistoria.txt', 'a')
         cpf = input('\nDigite seu CPF: ')
-        arquivo.write(cpf + '\n')
-        arquivo.close()
+        
+        if TratarCPF(cpf):
+            arquivo.write(cpf + '\n')
+            arquivo.close()
 
-        if VerificarCPF(cpf):
-            break
+            if VerificarCPF(cpf):
+                break
+        else:
+            print(f'CPF {cpf} inválido. Tente novamente!')
 
 
 # Verifica a existência do CPF na lista
@@ -41,10 +57,9 @@ def VerificarCPF(cpf):
         print(f'O CPF {cpf} foi encontrado. Seja bem vindo!')
         return True
     else:
-        print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
+        print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente!')
         return False
         
-
 
 #Case 2: para escolher um tipo de seguro        
 def RegistroSeguro():
@@ -61,11 +76,11 @@ def RegistroSeguro():
         
         try:
             if seguro < 1 or seguro > 7:
-                print('\nDigite um número válido!')
+                print('\nDigite uma opção válida!')
 
             confirma = Confirmacao()
             if confirma == 1:
-                print('\nSeguro selecionado')
+                print('\nSeguro selecionado!')
                 break
             elif confirma == 2:
                 print('\nEscolha novamente o seguro!')
@@ -216,7 +231,9 @@ def Vistoria():
             + '\n-Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto')
     print('\nObservação: neste momento, como ainda não é possível enviar fotos e vídeos, esta parte não é totalmente funcional')
     print('-----------------------------------')
+   
     MidiaVistoria()
+    
     print('\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu e-mail ou aqui pelo site.')
     print('------------------------------')
     print('\nDeseja conferir o status da análise da vistoria?')
@@ -226,17 +243,17 @@ def Vistoria():
 
     if confirmVistoria == 1: 
         if aprovado == True:
-            print('\nSeus dados foram aprovados! Agora assine a apólice.')
+            print('\nSeus dados foram aprovados!')
         elif reprovado == True:
-            print('\nSeus dados foram reprovados. Refaça o processo de vistoria.')
+            print('\nSeus dados foram reprovados. Refaça o processo de vistoria!')
         elif emAnalise == True:
-            print('\nSeus dados estão em análise.')
+            print('\nSeus dados estão em análise!')
         elif faltandoDocs == True:
-            print('\nEstá faltando documentos para realizar a vistoria. Revise seus dados.')
+            print('\nEstá faltando documentos para realizar a vistoria. Revise seus dados!')
     elif confirmVistoria == 2:
-        print('\nOk. Você pode acompanhar no seu email ou voltar aqui para conferir o atual status da sua vistoria.')
+        print('\nOk! Você pode acompanhar no seu email ou voltar aqui para conferir o atual status da sua vistoria.')
     else:
-        print('Opção incorreta')
+        print('Opção incorreta. Tente novamente!')
 
 
 #Case 3: informa o status da vistoria
@@ -249,40 +266,39 @@ def Status():
     cpf = input('\nDigite seu CPF: ')
     
     if VerificarCPF(cpf):
-        print('\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu email ou aqui pelo site.')
+        print('\nOs seus dados foram enviados para vistoria. Você pode acompanhar o atual status da análise pelo seu e-mail ou aqui pelo site.')
         print('\nDeseja conferir o status da análise da vistoria?')
         confirmVistoria = int(input('\n1 - Sim'
                                   + '\n2 - Não' 
                                   + '\nSelecione uma opção: '))
         if confirmVistoria == 1: 
             if aprovado:
-                print('Seus dados foram aprovados! Agora assine a apólice.')
+                print('Seus dados foram aprovados!')
             elif reprovado:
-                print('Seus dados foram reprovados. Refaça o processo de vistoria.')
+                print('Seus dados foram reprovados. Refaça o processo de vistoria!')
             elif emAnalise:
-                print('\nSeus dados estão em análise.')
+                print('\nSeus dados estão em análise!')
             elif faltandoDocs:
-                print('Está faltando documentos para realizar a vistoria. Revise seus dados.')
+                print('Está faltando documentos para realizar a vistoria. Revise seus dados!')
         elif confirmVistoria == 2:
-            print('\nOk. Você pode acompanhar no seu email ou voltar aqui para conferir o atual status da sua vistoria.')
+            print('\nOk! Você pode acompanhar no seu email ou voltar aqui para conferir o atual status da sua vistoria.')
         else:
-            print('Opção incorreta')
+            print('Opção incorreta. Tente novamente!')
         return emAnalise
 
       
 #Case 4: para perguntar a nota do fedback
 def Nota():
-    nota = 0
-    while nota != -1:
-        nota = int(input('Qual a sua nota para esse serviço? (0 - 10): '))
-        if nota < 0 or nota > 10:
-            print('\nNota inválida, tente novamente.')
-            nota = 1
-        else:
-            tuplaNota = (nota)
-            nota = -1
-            return f'Nota {tuplaNota} gravada com sucesso!'
-           
+    while True:
+        try:
+            nota = int(input('Qual a sua nota para esse serviço? (0 - 10): '))
+            if 0 <= nota <= 10:
+                notas.append(nota)
+                return nota
+            else:
+                print('\nNota inválida. Por favor, Insira uma nota entre 0 e 10!')
+        except ValueError:
+            print('\nNota inválida. Por favor, insira um número entre 0 e 10!')
     
 #Menu de opções
 while True:
@@ -329,8 +345,10 @@ while True:
                 motivo = feedback['motivo']
                 print(f'\n{motivo}')
                 feedback['nota'] = Nota()
-                print('Feedback enviado')
-                print(f"{feedback['nota']}")
+                print(f'Nota {feedback["nota"]} enviada com sucesso!')
+            
+            media = sum(notas)/ len(notas)
+            print(f'\A sua média de satisfação com a Technobike é de {media}. Muito obrigado!')
 
 
 ## Encerrar o programa
