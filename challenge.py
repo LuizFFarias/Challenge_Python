@@ -1,4 +1,5 @@
 import re
+notas = []
 
 #Para o cliente confirmar se o que informou está correto
 def Confirmacao():
@@ -292,6 +293,7 @@ def Nota():
         try:
             nota = int(input('Qual a sua nota para esse serviço? (0 - 10): '))
             if 0 <= nota <= 10:
+                notas.append(nota)
                 return nota
             else:
                 print('\nNota inválida. Por favor, Insira uma nota entre 0 e 10!')
@@ -344,6 +346,9 @@ while True:
                 print(f'\n{motivo}')
                 feedback['nota'] = Nota()
                 print(f'Nota {feedback["nota"]} enviada com sucesso!')
+            
+            media = sum(notas)/ len(notas)
+            print(f'\A sua média de satisfação com a Technobike é de {media}. Muito obrigado!')
 
 
 ## Encerrar o programa
