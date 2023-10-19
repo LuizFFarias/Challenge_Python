@@ -19,6 +19,7 @@ def TipoSeguro():
                     + '\n7- Para ciclistas que viajam com a bike'
                     + '\n--------------------------------------------')
 
+
 #Case 2: para identificar o cliente no sistema
 def IdentificarCliente():
     while True:
@@ -44,7 +45,6 @@ def VerificarCPF(cpf):
         print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente')
         return False
         
-
 
 #Case 2: para escolher um tipo de seguro        
 def RegistroSeguro():
