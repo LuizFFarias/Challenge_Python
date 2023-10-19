@@ -288,17 +288,15 @@ def Status():
       
 #Case 4: para perguntar a nota do fedback
 def Nota():
-    nota = 0
-    while nota != -1:
-        nota = int(input('Qual a sua nota para esse serviço? (0 - 10): '))
-        if nota < 0 or nota > 10:
-            print('\nNota inválida, tente novamente.')
-            nota = 1
-        else:
-            tuplaNota = (nota)
-            nota = -1
-            return f'Nota {tuplaNota} gravada com sucesso!'
-           
+    while True:
+        try:
+            nota = int(input('Qual a sua nota para esse serviço? (0 - 10): '))
+            if 0 <= nota <= 10:
+                return nota
+            else:
+                print('\nNota inválida. Por favor, Insira uma nota entre 0 e 10!')
+        except ValueError:
+            print('\nNota inválida. Por favor, insira um número entre 0 e 10!')
     
 #Menu de opções
 while True:
@@ -345,8 +343,7 @@ while True:
                 motivo = feedback['motivo']
                 print(f'\n{motivo}')
                 feedback['nota'] = Nota()
-                print('Feedback enviado')
-                print(f"{feedback['nota']}")
+                print(f'Nota {feedback["nota"]} enviada com sucesso!')
 
 
 ## Encerrar o programa
