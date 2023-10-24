@@ -1,4 +1,5 @@
 import re
+import json
 notas = []
 
 #Para o cliente confirmar se o que informou está correto
@@ -333,22 +334,25 @@ while True:
 
 # Feedback
         case 4:
-            opcaofb = [
-                {'motivo': '--Tempo para fazer vistoria', 'nota': None},
-                {'motivo': '--Serviços fornecido', 'nota': None},
-                {'motivo': '--Problemas', 'nota': None},
-                {'motivo': '--Atendimento', 'nota': None},
-                {'motivo': '--Resolução de dúvidas', 'nota': None}
-]           
+            feedbacks = {
+                '--Tempo para fazer a vistoria': None,
+                '--Servicos fornecidos': None,
+                '--Problemas': None,
+                '--Atendimento': None,
+                '--Resolucao de duvidas': None
+            }          
 
-            for feedback in opcaofb:
-                motivo = feedback['motivo']
+            for motivo, _ in feedbacks.items():
                 print(f'\n{motivo}')
-                feedback['nota'] = Nota()
-                print(f'Nota {feedback["nota"]} enviada com sucesso!')
+                feedbacks[motivo] = Nota()
+                print(f'Nota {feedbacks[motivo]} enviada com sucesso!')
             
+            notas = list(feedbacks.values())
             media = sum(notas)/ len(notas)
-            print(f'\A sua média de satisfação com a Technobike é de {media}. Muito obrigado!')
+            print(f'\nA sua média de satisfação com a Technobike é de {media}. Muito obrigado!')
+
+            with open('feedbacks.json', 'a') as arquivo:
+                json.dump("Feedback: ", feedbacks, arquivo, indent = 4) 
 
 
 ## Encerrar o programa
