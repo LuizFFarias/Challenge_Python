@@ -351,8 +351,8 @@ while True:
             media = sum(notas)/ len(notas)
             print(f'\nA sua média de satisfação com a Technobike é de {media}. Muito obrigado!')
 
-            with open('feedbacks.json', 'a') as arquivo:
-                json.dump("Feedback: ", feedbacks, arquivo, indent = 4) 
+            with open('feedbacks.json', 'w') as arquivo:
+                json.dump(feedbacks, arquivo, indent = 4) 
 
 
 ## Encerrar o programa
