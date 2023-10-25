@@ -1,8 +1,13 @@
 import re
+import json
 notas = []
 
-#Para o cliente confirmar se o que informou está correto
+
 def Confirmacao():
+    """
+    Esta função pede para o cliente confirmar se o que foi passado por ele está correto.
+    """
+
     print('\nAs informações estão corretas?' 
           + '\n1 - Sim '
           + '\n2 - Não')
@@ -10,16 +15,22 @@ def Confirmacao():
     return confirm
 
 
-#Verifica se o CPF tem apenas 11 dígitos numéricos
 def TratarCPF(cpf):
+    """
+    Esta função verifica se o CPF informado pelo usuário possui exatamente 11 dígitos numéricos
+    """
+
     if re.match(r'^\d{11}$', cpf):
         return True
     else:
         return False
 
 
-#Case 1: mostrar os tipos de seguro
 def TipoSeguro():
+        """
+        Esta função serve para mostrar os tipos de seguros disponibilizados pela TechnoBike
+        """
+
         print('\nEssas são as opções de seguro disponibilizadas pela nossa empresa: '
                     + '\n1- Para ciclistas que pedalam na rua'
                     + '\n2- Para ciclistas de maratona'
@@ -31,8 +42,11 @@ def TipoSeguro():
                     + '\n--------------------------------------------')
 
 
-#Case 2: para identificar o cliente no sistema
 def IdentificarCliente():
+    """
+    Esta função salva o CPF do cliente no sistema
+    """
+    
     while True:
         arquivo = open('clientesvistoria.txt', 'a')
         cpf = input('\nDigite seu CPF: ')
@@ -47,8 +61,11 @@ def IdentificarCliente():
             print(f'CPF {cpf} inválido. Tente novamente!')
 
 
-# Verifica a existência do CPF na lista
 def VerificarCPF(cpf):
+    """
+    Esta função verifica se o CPF informado pelo usuário existe no sistema para que ele possa prosseguir com sua vistoria
+    """
+    
     with open('clientesvistoria.txt', 'r') as arquivo:
         linhas = arquivo.readlines()
         cpfs = [linha.strip() for linha in linhas]
@@ -61,17 +78,13 @@ def VerificarCPF(cpf):
         return False
         
 
-#Case 2: para escolher um tipo de seguro        
 def RegistroSeguro():
+    """
+    Esta função apresenta os tipos de seguro disponibilizados pela TechnoBike e pergunta qual destes o cliente quer
+    """
+
     while True:
-        print('\nEssas são as opções de seguro disponibilizadas pela nossa empresa: '
-                    + '\n1- Para ciclistas que pedalam na rua'
-                    + '\n2- Para ciclistas de maratona'
-                    + '\n3- Para ciclistas que pedalam em montanhas'
-                    + '\n4- Para ciclistas que pedalam em pedras e rochas'
-                    + '\n5- Para ciclistas que pedalam em terra e mato'
-                    + '\n6- Para ciclistas por hobbie'
-                    + '\n7- Para ciclistas que viajam com a bike')
+        TipoSeguro()
         seguro = int(input('\nQual dessas opções combina mais com seu estilo? '))
         
         try:
@@ -89,9 +102,13 @@ def RegistroSeguro():
             print("Digite um número válido!")
 
 
-#Case 2: para enviar as fotos e vídeos para a vistoria
 def MidiaVistoria():
+        """
+        Esta função simula o envio das fotos e vídeos para a vistoria
+        """
+        
         print('\nClique no x para adicionar a foto: ')
+        print('-----------------------------------------')
         
         print('\n x- Foto da bike inteira de lado')
         confirmFoto = Confirmacao()
@@ -204,8 +221,12 @@ def MidiaVistoria():
             print('\nVídeo adicionado.')
 
 
-#Case 2: iniciar o processo de vistoria
 def Vistoria():
+    """
+    Esta função inicia, de fato, o processo de vistoria
+    Ela chama a função de identificar o cliente, de registrar o tipo de seguro, de enviar as mídias da vistoria e deixa conferir o status da vistoria ao fim
+    """
+    
     aprovado = False
     reprovado = False
     emAnalise = True
@@ -256,8 +277,11 @@ def Vistoria():
         print('Opção incorreta. Tente novamente!')
 
 
-#Case 3: informa o status da vistoria
 def Status():
+    """
+    Esta função informa o status da vistoria a partir da busca de seu CPF no sistema
+    """
+    
     faltandoDocs = False
     reprovado = False
     aprovado = False
@@ -287,8 +311,11 @@ def Status():
         return emAnalise
 
       
-#Case 4: para perguntar a nota do fedback
 def Nota():
+    """
+    Esta função pergunta o feedback do cliente em relação à TechnoBike
+    """
+    
     while True:
         try:
             nota = int(input('Qual a sua nota para esse serviço? (0 - 10): '))
@@ -299,9 +326,14 @@ def Nota():
                 print('\nNota inválida. Por favor, Insira uma nota entre 0 e 10!')
         except ValueError:
             print('\nNota inválida. Por favor, insira um número entre 0 e 10!')
-    
-#Menu de opções
+
+
+#Menu
 while True:
+    """
+    Menu com as funcionalidades do sistema
+    """
+    
     print('\nOlá, em que a Technobike pode teseguro para a bike')
     print('1 - Tipo de seguro')
     print('2 - Iniciar processo de vistoria')
@@ -316,6 +348,7 @@ while True:
         continue
     
     match opcaomenu:
+
 #Tipos de seguro
         case 1: 
             TipoSeguro()
@@ -333,22 +366,25 @@ while True:
 
 # Feedback
         case 4:
-            opcaofb = [
-                {'motivo': '--Tempo para fazer vistoria', 'nota': None},
-                {'motivo': '--Serviços fornecido', 'nota': None},
-                {'motivo': '--Problemas', 'nota': None},
-                {'motivo': '--Atendimento', 'nota': None},
-                {'motivo': '--Resolução de dúvidas', 'nota': None}
-]           
+            feedbacks = {
+                '--Tempo para fazer a vistoria': None,
+                '--Servicos fornecidos': None,
+                '--Problemas': None,
+                '--Atendimento': None,
+                '--Resolucao de duvidas': None
+            }          
 
-            for feedback in opcaofb:
-                motivo = feedback['motivo']
+            for motivo, _ in feedbacks.items():
                 print(f'\n{motivo}')
-                feedback['nota'] = Nota()
-                print(f'Nota {feedback["nota"]} enviada com sucesso!')
+                feedbacks[motivo] = Nota()
+                print(f'Nota {feedbacks[motivo]} enviada com sucesso!')
             
+            notas = list(feedbacks.values())
             media = sum(notas)/ len(notas)
-            print(f'\A sua média de satisfação com a Technobike é de {media}. Muito obrigado!')
+            print(f'\nA sua média de satisfação com a Technobike é de {media}. Muito obrigado!')
+
+            with open('feedbacks.json', 'w') as arquivo:
+                json.dump(feedbacks, arquivo, indent = 4) 
 
 
 ## Encerrar o programa
