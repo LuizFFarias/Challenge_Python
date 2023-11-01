@@ -110,115 +110,202 @@ def MidiaVistoria():
         print('\nClique no x para adicionar a foto: ')
         print('-----------------------------------------')
         
-        print('\n x- Foto da bike inteira de lado')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+        try:
             print('\n x- Foto da bike inteira de lado')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
-            
-        print('\n x- Foto do número de série')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
-            print('\n x - Foto do número de série')
-            confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada')
         
-        print('\n x- Foto da roda')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto da bike inteira de lado')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
+
+        try:
+            print('\n x- Foto do número de série')
+            confirmFoto = Confirmacao()
+        
+            if confirmFoto == 1:
+                print('\nFoto adicionada')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x - Foto do número de série')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
+
+
+        try:
             print('\n x- Foto da roda')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
 
-        print('\n x- Foto dos freios')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2: 
-            print('Repita o processo')
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto da roda')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
+
+        try:
             print('\n x- Foto dos freios')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
+            
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2: 
+                print('Repita o processo')
+                print('\n x- Foto dos freios')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
         
-        print('\n x- Foto do guidão')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+        except ValueError:
+            print('\nDigite um número válido!')
+
+        try:
             print('\n x- Foto do guidão')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
 
-        print('\n x- Foto dos pedais')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto do guidão')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
+
+        try:
             print('\n x- Foto dos pedais')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
+
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto dos pedais')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
         
-        print('\n x- Foto da corrente')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+        except ValueError:
+            print('\nDigite um número válido!')
+            
+        try:
             print('\n x- Foto da corrente')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto da corrente')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
 
-        print('\n x- Foto sua com a bike')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+        try:
             print('\n x- Foto sua com a bike')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
+            
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto sua com a bike')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
 
-        print('\n x- Foto da bike de frente')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+        try:
             print('\n x- Foto da bike de frente')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
+            
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto da bike de frente')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
 
-        print('\n x- Foto dos acessórios (se for visível)')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+        try:
             print('\n x- Foto dos acessórios (se for visível)')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nFoto adicionada.')
+            
+            if confirmFoto == 1:
+                print('\nFoto adicionada.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\n x- Foto dos acessórios (se for visível)')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
 
-        print('\nClique no x para adicionar os vídeos: ')
+ 
+            print('\nClique no x para adicionar os vídeos: ')
 
-        print('\nx -Vídeo mostrando a bike completa')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2: 
-            print('Repita o processo')
+
+        try:
             print('\nx -Vídeo mostrando a bike completa')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nVídeo adicionado.')
+            
+            if confirmFoto == 1:
+                print('\nVídeo adicionado.')
+            elif confirmFoto == 2: 
+                print('Repita o processo')
+                print('\nx -Vídeo mostrando a bike completa')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
 
-        print('\nx -Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto')
-        confirmFoto = Confirmacao()
-        while confirmFoto == 2:
-            print('Repita o processo')
+        try:
             print('\nx -Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto')
             confirmFoto = Confirmacao()
-        if confirmFoto == 1:
-            print('\nVídeo adicionado.')
+            
+            if confirmFoto == 1:
+                print('\nVídeo adicionado.')
+            elif confirmFoto == 2:
+                print('Repita o processo')
+                print('\nx -Vídeo mostrando com mais ênfase cada ponto chave que foi tirado foto')
+                confirmFoto = Confirmacao()
+            else:
+                print('\nDigite um número válido!')
+        
+        except ValueError:
+            print('\nDigite um número válido!')
+
 
 
 def Vistoria():
@@ -268,7 +355,7 @@ def Vistoria():
         elif reprovado == True:
             print('\nSeus dados foram reprovados. Refaça o processo de vistoria!')
         elif emAnalise == True:
-            print('\nSeus dados estão em análise!')
+            print('\nAguarde um pouco. Seus dados estão em análise!')
         elif faltandoDocs == True:
             print('\nEstá faltando documentos para realizar a vistoria. Revise seus dados!')
     elif confirmVistoria == 2:
@@ -334,7 +421,7 @@ while True:
     Menu com as funcionalidades do sistema
     """
     
-    print('\nOlá, em que a Technobike pode teseguro para a bike')
+    print('\nOlá, em que a Technobike pode te ajudar?')
     print('1 - Tipo de seguro')
     print('2 - Iniciar processo de vistoria')
     print('3 - Conferir status da vistoria')
