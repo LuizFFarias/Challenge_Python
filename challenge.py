@@ -1,7 +1,22 @@
+#Importação dos módulos 
+import oracledb
+import pwinput
 import re
 import json
 notas = []
 
+#Tentando Conexão com o Banco de Dados
+try:
+        
+        usuario = "rm552008"
+        senha = "fiap23"
+
+        conn = oracledb.connect(user=usuario, password=senha, host="oracle.fiap.com.br", port=1521, service_name="orcl")
+
+        cursor = conn.cursor()
+
+except Exception as erro:
+    print(f"Erro: {erro}")
 
 def Confirmacao():
     """
@@ -13,17 +28,6 @@ def Confirmacao():
           + '\n2 - Não')
     confirm = int(input('\nSelecione uma opção: '))
     return confirm
-
-
-def TratarCPF(cpf):
-    """
-    Esta função verifica se o CPF informado pelo usuário possui exatamente 11 dígitos numéricos
-    """
-
-    if re.match(r'^\d{11}$', cpf):
-        return True
-    else:
-        return False
 
 
 def TipoSeguro():
@@ -46,35 +50,45 @@ def IdentificarCliente():
     """
     Esta função salva o CPF do cliente no sistema
     """
-    
     while True:
-        arquivo = open('clientesvistoria.txt', 'a')
-        cpf = input('\nDigite seu CPF: ')
-        
-        if TratarCPF(cpf):
-            arquivo.write(cpf + '\n')
-            arquivo.close()
+        try:
+            cpf = input('\nDigite seu CPF (11 dígitos): ')
 
-            if VerificarCPF(cpf):
-                break
-        else:
-            print(f'CPF {cpf} inválido. Tente novamente!')
+            if len(cpf) != 11 or not cpf.isdigit():
+                print("O CPF deve conter exatamente 11 dígitos inteiros.")
+                continue
 
+            cpf = int(cpf)
+
+            cadastro = f"""INSERT INTO identificarCliente (cpf) VALUES ({cpf})"""
+
+            cursor.execute(cadastro)
+            conn.commit()
+            print(f"CPF {cpf} cadastrado com sucesso!")
+            break
+        except ValueError:
+            print("Digite 11 números inteiros!")
+        except:
+            print("Erro na Transação do Banco de Dados")
+            break
 
 def VerificarCPF(cpf):
     """
     Esta função verifica se o CPF informado pelo usuário existe no sistema para que ele possa prosseguir com sua vistoria
     """
-    
-    with open('clientesvistoria.txt', 'r') as arquivo:
-        linhas = arquivo.readlines()
-        cpfs = [linha.strip() for linha in linhas]
-    
-    if cpf in cpfs:
-        print(f'O CPF {cpf} foi encontrado. Seja bem vindo!')
-        return True
-    else:
-        print(f'O cpf {cpf} não foi encontrado no sistema. Tente novamente!')
+    try:
+        consulta = f"""SELECT cpf FROM identificarCliente WHERE cpf = {cpf}"""
+        cursor.execute(consulta)
+        resultado = cursor.fetchone()
+        
+        if resultado:
+            print(f'O CPF {cpf} foi encontrado no sistema. Seja bem-vindo!')
+            return True
+        else:
+            print(f'O CPF {cpf} não foi encontrado no sistema. Tente novamente!')
+            return False
+    except Exception as error:
+        print(f"Erro ao verificar CPF no banco de dados: {error}")
         return False
         
 
