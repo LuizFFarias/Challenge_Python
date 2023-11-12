@@ -1,13 +1,17 @@
-#Importação dos módulos 
+"""
+Importação dos módulos
+"""
 import oracledb
 import pwinput
 import re
 import json
 notas = []
 
-#Tentando Conexão com o Banco de Dados
-try:
-        
+
+"""
+Conexão com o Banco de Dados
+"""
+try:       
         usuario = "rm552008"
         senha = "fiap23"
 
@@ -50,6 +54,7 @@ def IdentificarCliente():
     """
     Esta função salva o CPF do cliente no sistema
     """
+
     while True:
         try:
             cpf = input('\nDigite seu CPF (11 dígitos): ')
@@ -64,7 +69,7 @@ def IdentificarCliente():
 
             cursor.execute(cadastro)
             conn.commit()
-            print(f"CPF {cpf} cadastrado com sucesso!")
+            print(f"CPF {cpf} encontrado com sucesso!")
             break
         except ValueError:
             print("Digite 11 números inteiros!")
@@ -76,6 +81,7 @@ def VerificarCPF(cpf):
     """
     Esta função verifica se o CPF informado pelo usuário existe no sistema para que ele possa prosseguir com sua vistoria
     """
+    
     try:
         consulta = f"""SELECT cpf FROM identificarCliente WHERE cpf = {cpf}"""
         cursor.execute(consulta)
